@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for dict in results %}
+    {% for key, value in dict.items() %}
+        <h1>Key: {{key}}</h1>
+        <h2>Value: {{value}}</h2>
+    {% endfor %}
+{% endfor %}
+
+{% endblock %}
