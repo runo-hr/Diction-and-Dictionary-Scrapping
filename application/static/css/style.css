@@ -4,11 +4,41 @@ body {
   background-color: #f0f5ff;
   font-family: 'Jost',sans-serif;
   color: #fff;
+
+  /*max-width:600px;
+  margin: 0 auto;
+  background-color: rgb(18, 23, 27);
+  color: aliceblue;*/
+
+}
+
+.text{
+    font-size: 24px;
+}
+
+.content {
+    display: none;
+}
+
+.read-more-btn{
+    padding: 15px 60px;
+    background-color: rgb(149, 170, 197);
+    color: rgb(53, 49, 49);
+    border: none;
+    outline: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.text.show-more .content{
+    display: block;
 }
 
 .wrapper {
-  width: 400px;
+  width: 1000px;
+/*
   margin: 40px auto;
+*/
   padding: 10px;
   border-radius: 5px;
   background: white;
