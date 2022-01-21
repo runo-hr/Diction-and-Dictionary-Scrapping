@@ -1,12 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<p class="text">
+    The following ten words were the most frequent
+    <span class="content">
+        <canvas id = "my_chart" > </canvas>
+    </span>
+</p>
+<button class="read-more-btn">Show More</button>
+{% endblock %}
 
-{% for dict in results %}
-    {% for key, value in dict.items() %}
-        <h1>Key: {{key}}</h1>
-        <h2>Value: {{value}}</h2>
-    {% endfor %}
-{% endfor %}
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+<script>
+    let myChart = document.getElementById('my_chart').getContext('2d');
 
+    let freqChart = new Chart(myChart, {
+        type:'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data:{
+            labels:{{frequent_words | safe}},
+            datasets:[{
+                label:'Frequency',
+                data:{{frequency | safe}}
+            }]
+        },
+        options:{}
+    });
+
+
+
+
+
+
+
+</script>
 {% endblock %}
