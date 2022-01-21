@@ -1,9 +1,10 @@
 from flask import  render_template, request, jsonify, redirect, url_for
 from application import app
-from application.scrape import Scraper, Detector
+from application.scrape import Scraper
 import operator
 from collections import Counter
 import itertools
+import json
 
 @app.route('/', methods=["POST", "GET"])
 def home_page():
@@ -22,16 +23,19 @@ def home_page():
 
 @app.route('/results')
 def results_page(pages):
-    scraper = Scraper()
-    detector = Detector()
     results = []
 
     for page in pages:
-        title, word_freq, available_words = scraper.scrape_page(page)
+        scraper = Scraper(page)
+        title = scraper.title
+        frequent = scraper.most_freq
+        words = list(frequent.keys())
+        freq = list(frequent.values())
         results.append({'name': title,
-                        'words List': word_freq})
+                        'most frequent': frequent})
 
-    return render_template('results.html', results=results)
+    return render_template('results.html', results=results, frequent_words=json.dumps(words),
+                           frequency=json.dumps(freq))
 
 
 
