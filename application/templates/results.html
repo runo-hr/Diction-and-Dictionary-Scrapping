@@ -1,37 +1,82 @@
 {% extends 'base.html' %}
 
+{% block title %}
+<title>Diction Scraping | Results per page</title>
+{% endblock %}
+
+
 {% block content %}
-<p class="text">
-    The following ten words were the most frequent
-    <span class="content">
-        <canvas id = "my_chart" > </canvas>
+<h2>{{ page_data['title'] }}</h2>
+<hr width="100%" size="6" align="center">
+<br>
+<div id="sections">
+    <h3> Frequency Chart </h3>
+    <p class="text">
+        The following ten words were the most frequent
+        <span class="dots">. . .</span>
+        <span class="content">
+        <canvas id="my_chart"> </canvas>
     </span>
-</p>
-<button class="read-more-btn">Show More</button>
+    </p>
+    <button class="read-more-btn" id="one">Show More</button>
+
+    <br>
+    <br>
+    <br>
+    <h3> All Words </h3>
+    <p class="text">
+        The following is a list of all words occuring on the page and their frequency of occurrence
+        <span class="dots">. . .</span>
+        {% for k,v in page_data['sorted_count'] %}
+        <span class="content">
+            {{ k }}......................... {{v}}
+        </span>
+        {% endfor %}
+    </p>
+    <button class="read-more-btn" id="two">Show More</button>
+
+    <br>
+    <br>
+    <br>
+    <h3> Alphanums </h3>
+    {% if page_data['alphanums']|length > 0 %}
+    <p class="text">
+        All words with numbers in them
+        <span class="dots">...</span>
+        <span class="content">
+            {% for word in page_data['alphanums'] %}
+                {{word}}
+            <br>
+            {% endfor %}
+        </span>
+    </p>
+    <button class="read-more-btn" id="three">Show More</button>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block content_right %}
+<h3>Visit Page</h3>
+<a href="{{ page_data['url'] }}" target="_blank" >{{page_data['title']}} </a>
 {% endblock %}
 
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 <script>
     let myChart = document.getElementById('my_chart').getContext('2d');
+    var obj = JSON.parse('{{ page_data['chart'] | safe}}');
+    console.log('obj',obj);
 
     let freqChart = new Chart(myChart, {
         type:'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
         data:{
-            labels:{{frequent_words | safe}},
+            labels: obj.words,
             datasets:[{
                 label:'Frequency',
-                data:{{frequency | safe}}
+                data: obj.freq
             }]
         },
         options:{}
     });
-
-
-
-
-
-
-
 </script>
 {% endblock %}

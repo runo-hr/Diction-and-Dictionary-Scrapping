@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
-{% block content %}
-<form action="#" method="post">
-        <div id="survey_options">
-            <input type="text" name="page_1" class="survey_options" size="50" placeholder="page url">
-        </div>
-        <div class="controls">
-            <a href="#" id="add_more_fields"><i class="fa fa-plus"></i>Add Page</a>
-            <a href="#" id="remove_fields"><i class="fa fa-minus"></i>Remove page</a>
-        </div>
-        <input type="submit" value="submit"/>
-    </form>
+
+{% block title %}
+<title>Diction Scraping | Home</title>
 {% endblock %}
+
+{% block content %}
+<div class="section" align="center">
+<p align="left" class="text">
+    <span>This app scrapes all the words used in a page and groups them to various categories.</span>
+    <span>Additionaly the application can analyse and compare the vocabulary content of different pages </span>
+</p>
+
+    <div class="section" align="center">
+    <blockquote class="text"  >
+        <span>I did this project as part of an application for a Junior Developer role at PesaPal. </span>
+        Information on the development can be found
+        <a href="https://github.com/runo-hr/Diction-and-Dictionary-Scrapping" target="_blank">here</a>.
+</blockquote>
+</div>
+
+</div>
+
+{% endblock %}
+
 {% block script %}
-<script src="{{url_for('static',filename='js/script.js')}}"></script>
 {% endblock %}

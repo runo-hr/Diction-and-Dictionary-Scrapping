@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Diction Scraping | Compare Results</title>
+{% endblock %}
+
+{% block content %}
+
+{% for page_data in comparison_data['dynamic data'] %}
+{% if page_data['idx'] == comparison_data['dynamic data']|length - 1 %}
+    <h2>{{page_data['title']}}</h2>
+{% else %}
+    <h2>{{page_data['title']}}</h2>
+    <p> vs </p>
+{% endif %}
+{% endfor %}
+<hr width="100%" size="6" align="center">
+<br>
+<div id="sections">
+    <h2><b>Common Words</b> </h2>
+    <p class="text">
+        The following words were present in all pages
+        <span class="dots">...</span>
+        <span class="content">
+            {% for word in comparison_data['in all'] %}
+                {{ word }}
+                <br>
+            {% endfor %}
+        </span>
+    </p>
+    <button class="read-more-btn" id="c-one">Show More</button>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2><b>Page Combinations</b> </h2>
+    <p class="text">The following is a comparison of each page with every other.</p>
+    <hr width="100%" size="4" align="center">
+    {% for dictionary in comparison_data['combinations'] %}
+        {% for k,v in dictionary.items()  %}
+            {% if k == 'Heading'  %}
+                <h4>{{v}}</h4>
+                <br>
+            {% else %}
+                <h5><em>{{k}}</em></h5>
+                <p class="text">
+                    <span class="content">
+                        {% for word in v %}
+                            {{word}}
+                            <br>
+                        {% endfor %}
+                    </span>
+                </p>
+                <button class="read-more-btn" id="{{v}}-two">Show More</button>
+                 <br>
+                <br>
+            {% endif  %}
+        {% endfor %}
+    <hr width="100%" size="4" align="center">
+    {% endfor  %}
+
+</div>
+
+
+{% endblock %}
+
+{% block content_right %}
+<h3>One Page Analysis</h3>
+{% for page_data in comparison_data['dynamic data']%}
+
+<a href="{{ url_for('dynamic_page', n=page_data['idx']) }}" >{{page_data['title']}} </a>
+
+<br>
+<br>
+
+{% endfor %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        function myFunction(x) {
+        $.getJSON($SCRIPT_ROOT + '/listener', {
+        post: x
+        }
+        });
+}
+    </script>
+{% endblock %}

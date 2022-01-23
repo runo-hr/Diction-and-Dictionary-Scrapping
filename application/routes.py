@@ -1,43 +1,95 @@
-from flask import  render_template, request, jsonify, redirect, url_for
+from flask import  render_template, request, jsonify, redirect, url_for, flash
 from application import app
-from application.scrape import Scraper
-import operator
-from collections import Counter
-import itertools
+from application.scrape import Scraper, Compare, URL
 import json
+
+all_pages = []
 
 @app.route('/', methods=["POST", "GET"])
 def home_page():
+    if len(all_pages) > 0:
+        all_pages.clear()
+    u = URL()
     if request.method == 'POST':
         pages = []
         i=1
         while True:
             try:
                 page = request.form[f"page_{i}"]
-                pages.append(page)
-                i+=1
+                if u.url_validator(page):
+                    pages.append(page)
+                    all_pages.append(page)
+                    i+=1
+                else:
+                    flash(f'Please provide a valid URL', category='danger')
+                    break
             except KeyError:
-                return results_page(pages)
-    else:
-        return render_template('index.html')
+                if len(pages) == 1:
+                    return results_page(pages[0])
+                else:
+                    return compare_pages(pages)
+    return render_template('index.html')
 
-@app.route('/results')
-def results_page(pages):
-    results = []
+@app.route('/listener', methods=['GET','POST'] )
+def listener_end():
+    global selected
+    post = request.get('post')
+    print('data',str(post))
 
-    for page in pages:
-        scraper = Scraper(page)
-        title = scraper.title
-        frequent = scraper.most_freq
-        words = list(frequent.keys())
-        freq = list(frequent.values())
-        results.append({'name': title,
-                        'most frequent': frequent})
+def one_page(page):
+    page_data = {}
+    chart_data = {}
 
-    return render_template('results.html', results=results, frequent_words=json.dumps(words),
-                           frequency=json.dumps(freq))
+    scraper = Scraper(page)
 
+    frequent = scraper.most_freq
+    words = list(frequent.keys())
+    freq = list(frequent.values())
+    chart_data['words'] = words
+    chart_data['freq'] = freq
+    chart_data = json.dumps(chart_data)
 
+    sorted_count = scraper.sorted_count[::-1]
 
+    page_data['title'] = scraper.title
+    page_data['url'] = scraper.url
+    page_data['chart'] = chart_data
+    page_data['sorted_count'] = sorted_count
+    page_data['alphanums'] = scraper.alphanum_words
 
+    return page_data
+
+@app.route('/results', methods=["POST", "GET"])
+def results_page(page):
+    page_data = one_page(page)
+    return render_template('results.html', page_data=page_data)
+
+@app.route('/compare', methods=["POST", "GET"])
+def compare_pages(pages):
+    c = Compare(pages)
+    comparison_data = {}
+
+    comparison_data['title'] = c.heading
+    comparison_data['in all'] = c.in_all
+    comparison_data['combinations'] = c.combinations_of_two
+
+    dynamic_data = []
+    for idx,page in enumerate(pages):
+        per_page = {}
+        s = Scraper(page)
+        per_page['title'] = s.title
+        per_page['idx'] = idx
+        dynamic_data.append(per_page)
+
+    comparison_data['dynamic data'] = dynamic_data
+
+    return render_template('compare.html', comparison_data=comparison_data)
+
+@app.route('/results/<int:n>', methods=["POST", "GET"])
+def dynamic_page(n):
+    if request.method == 'POST':
+        return home_page()
+    page = all_pages[n]
+    page_results = one_page(page)
+    return render_template('results.html', page_data=page_results)
 

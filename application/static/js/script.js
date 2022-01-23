@@ -1,15 +1,3 @@
-const readMoreBtn = document.querySelector('.read-more-btn');
-const text = document.querySelector('.text' )
-
-readMoreBtn.addEventListener('click', (e)=>{
-    text.classList.toggle('show-more');
-    if (readMoreBtn.innerText === 'Show More'){
-        readMoreBtn.innerText = 'Show Less';
-    }else{
-        readMoreBtn.innerText = 'Show More';
-    }
-})
-
 var survey_options = document.getElementById('survey_options');
 var add_more_fields = document.getElementById('add_more_fields');
 var remove_fields = document.getElementById('remove_fields');
@@ -35,3 +23,23 @@ remove_fields.onclick = function(){
 		counter--
 	}
 }
+
+
+var theParent = document.querySelector('#sections');
+theParent.addEventListener("click", doSomething, false);
+
+function doSomething(e){
+    if (e.target !== e.currentTarget){
+        var readMoreBtn = document.getElementById(e.target.id);
+        var text = readMoreBtn.previousElementSibling
+        text.classList.toggle('show-more');
+        if (readMoreBtn.innerText === 'Show More'){
+            readMoreBtn.innerText = 'Show Less';
+        } else {
+            readMoreBtn.innerText = 'Show More';
+        }
+     }
+}
+
+
+

@@ -1,8 +1,16 @@
 import requests
 from bs4 import BeautifulSoup
-import operator
 from collections import Counter
 import itertools
+from urllib.parse import urlparse
+
+class URL:
+    def url_validator(self, url):
+        try:
+            result = urlparse(url)
+            return all([result.scheme, result.netloc, result.path])
+        except:
+            return False
 
 class Scraper:
     def __init__(self, url):
@@ -10,6 +18,7 @@ class Scraper:
         self.title = ""
         self.count_dict = {}
         self.sorted_count = []
+        self.alphanum_words = []
         self.unique_words = set()
         self.scrape_page(self.url)
         self.most_freq = self.most_frequent() #dict
@@ -31,11 +40,25 @@ class Scraper:
         symbols = "!@#$%^&*()_-+={[}]|\;:\"<>?/., "
         clean_lst = []
         for word in words_list:
+            word = word.strip()
             for i in range(len(symbols)):
                 word = word.replace(symbols[i], '')
-            if len(word) > 0:
+            if len(word) > 0 and not self.has_digit(word) and word not in symbols :
                 clean_lst.append(word)
+            elif self.has_alphanum(word):
+                self.alphanum_words.append(word)
         return self.word_frequency(clean_lst)
+
+    def has_digit(self, word):
+        # next() checking for each element, reaches end, if no element found as digit
+        res = True if next((chr for chr in word if chr.isdigit()), None) else False
+        return res
+
+    def has_alphanum(self, word):
+        if any(chr.isalpha() for chr in word) and any(chr.isdigit() for chr in word):
+            return True
+        else:
+            return False
 
     def word_frequency(self, clean_lst):
         for word in clean_lst:
@@ -50,33 +73,32 @@ class Scraper:
         return dict(top)
 
 class Compare(Scraper):
-    def __init__(self, *urls):
+    def __init__(self, urls):
         self.word_sets = []
         self.titles_n_sets = []
         self.heading = ''
 
         for url in urls:
             super().__init__(url)
+            new_line = '\n'
             if urls.index(url) != len(urls) - 1:
-                self.heading += f"{self.title} | "
+                self.heading += f"{self.title} {new_line} vs  "
             else:
-                self.heading += f"{self.title}"
+                self.heading += f"{new_line} {self.title}"
             self.word_sets.append(self.unique_words)
             self.titles_n_sets.append((self.title, self.unique_words))
 
-        self.in_all = self.common_in_all(self.titles_n_sets)
+        self.in_all = self.common_in_all(self.titles_n_sets) #set
         self.only_in_first = self.only_in_one(self.titles_n_sets)
         self.combinations_of_two = self.two_combinations(self.titles_n_sets)
 
     def common_in_all(self, titles_n_sets):
-        output = {}
         temp = titles_n_sets[0][1]
         i = 1
         while i < len(titles_n_sets):
             temp = temp & titles_n_sets[i][1]
             i += 1
-        output['Common in all pages'] = temp
-        return output
+        return temp
 
     def only_in_one(self, titles_n_sets):
         output = {}
