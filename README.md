@@ -72,13 +72,14 @@ For pushing changes from local working directory to this GitHub repo.
 2. Creating Flask backends
 3. GET and POST requests
 4. Exception Handling
-5. Packaging the Application
+5. Circular imports and Python packages
 6. Working with classes and class inheritance
 7. Data Structures and Algorithms
 8. Secret keys for applications
 9. Dynamic routing
 10. Creating front ends to web applications.
 11. Using one event listener for multiple buttons.
+12. Data visualization on the web.
 
 ## Development
 ### Files of the app
