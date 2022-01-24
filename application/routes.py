@@ -11,13 +11,13 @@ def home_page():
         all_pages.clear()
     u = URL()
     if request.method == 'POST':
-        pages = []
+        #pages = []
         i=1
         while True:
             try:
                 page = request.form[f"page_{i}"]
                 if u.url_validator(page):
-                    pages.append(page)
+                    #pages.append(page)
                     all_pages.append(page)
                     i+=1
                 else:
@@ -25,16 +25,10 @@ def home_page():
                     break
             except KeyError:
                 if len(pages) == 1:
-                    return results_page(pages[0])
+                    return results_page(all_pages[0])
                 else:
-                    return compare_pages(pages)
+                    return compare_pages(all_pages)
     return render_template('index.html')
-
-@app.route('/listener', methods=['GET','POST'] )
-def listener_end():
-    global selected
-    post = request.get('post')
-    print('data',str(post))
 
 def one_page(page):
     page_data = {}
