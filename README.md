@@ -34,7 +34,8 @@ Locally, the project works fine. When hosted, I run into the following error.
 <blockquote>
 requests.exceptions.ProxyError: HTTPSConnectionPool(host='www.geeksforgeeks.org', port=443): Max retries exceeded with url: /python-find-words-with-both-alphabets-and-numbers/ (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden')))
 </blockquote>
-I searched for why I get this error and according to <a href='https://stackoverflow.com/questions/70788406/requests-exceptions-proxyerror-httpsconnectionpoolhost-zillow-com-port-443'>this</a>, it is because I am on the free plan. Apparently, when hosting your applications at <a href='https://www.pythonanywhere.com/'>pythonanywhere</a>, if your web app involves scraping, they have to add the pages you want to scrape on the white list. The application should work on a paid plan.   
+I searched for why I get this error and according to <a href='https://stackoverflow.com/questions/70788406/requests-exceptions-proxyerror-httpsconnectionpoolhost-zillow-com-port-443'>this</a>, it is because I am on the free plan. Apparently, when hosting your applications at <a href='https://www.pythonanywhere.com/'>pythonanywhere</a>, if your web app involves scraping, they have to add the pages you want to scrape on the white list.  
+That said, I am currently exploring zeet and Heroku to see if the web app works fully on their free plans.
 
 ## Tech Stack
 1. Python:  Beautiful soup, Flask 
@@ -64,19 +65,19 @@ For the client to provide a custom number of input pages, the input fields need 
 jinja passes data from Flask backend to HTML tags.  
 
 #### GIT
-For pushing changes from local working directory to this GitHub repo.
+For pushing changes from local working directory to this repo.
 
 ## Concepts that will be covered
 1. Web Scraping
 2. Creating Flask backends
 3. GET and POST requests
 4. Exception Handling
-5. Packaging the Application
+5. Circular imports and Python packages
 6. Working with classes and class inheritance
 7. Data Structures and Algorithms
 8. Dynamic routing
-9. Creating front ends to web applications.
-10. Using one event listener for multiple buttons.
+9. Using one event listener for multiple buttons.
+10. Data visualization on the web.
 
 ## Development
 ### Files of the app
@@ -115,4 +116,3 @@ To scrape data from from HTML documents, we need to know where the data exists w
 These tags can then be within div tags which can in turn be siblings of other div tags. To access specific text on a page, we need to know the class of the div tags parent to it. These classes are different on different sites.  
 The common property of HTML pages on different sites is the head and body tags. The head holds metadata on the page. The body holds the content displayed on the page.  
 For the application to work on different HTML pages, we need to specify to the application that we are looking for text within the body tags.
-
