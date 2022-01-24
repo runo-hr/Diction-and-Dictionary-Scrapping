@@ -77,6 +77,7 @@ For pushing changes from local working directory to this GitHub repo.
 8. Secret keys for applications
 9. Dynamic routing
 10. Creating front ends to web applications.
+11. Using one event listener for multiple buttons.
 
 ## Development
 ### Files of the app
