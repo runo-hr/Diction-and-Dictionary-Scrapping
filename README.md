@@ -77,6 +77,7 @@ For pushing changes from local working directory to this GitHub repo.
 8. Secret keys for applications
 9. Dynamic routing
 10. Creating front ends to web applications.
+11. Using one event listener for multiple buttons.
 
 ## Development
 ### Files of the app
@@ -88,7 +89,10 @@ For pushing changes from local working directory to this GitHub repo.
 6. static directory: contains the css and javaScript files. 
 
 ### Web Scraping
+<<<<<<< HEAD
 To scrape data from from HTML documents, we need to know where the data exists within the page. Words can be contained in paragraph tags, span, tables, block quotes, headings, anchor and a couple more HTML tags.  
 These tags can then be within div tags which can in turn be siblings of other div tags. To access specific text on a page, we need to know the class of the div tags parent to it. These classes are different on different sites.  
 The common property of HTML pages on different sites is the head and body tags. The head holds metadata on the page. The body holds the content displayed on the page.  
 For the application to work on different HTML pages, we need to specify to the application that we are looking for text within the body tags.
+=======
+>>>>>>> 5cf1afc7b421f93bafb068f41b6a78a31a0e986a
