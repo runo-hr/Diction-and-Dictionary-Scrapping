@@ -62,3 +62,29 @@ For the client to provide a custom number of input pages, the input fields need 
 
 #### jinja
 jinja passes data from Flask backend to HTML tags.  
+
+#### GIT
+For pushing changes from local working directory to this GitHub repo.
+
+## Concepts that will be covered
+1. Web Scraping
+2. Creating Flask backends
+3. GET and POST requests
+4. Exception Handling
+5. Packaging the Application
+6. Working with classes and class inheritance
+7. Data Structures and Algorithms
+8. Secret keys for applications
+9. Dynamic routing
+10. Creating front ends to web applications.
+
+## Development
+### Files of the app
+1.  run.py: has the driver code for the application.
+2. application directory: the package of the application. Initialized by__init__
+3. scrape.py: module with classes to scrape and compare pages.
+4. routes.py: serves HTML templates, handles POST and GET requests.
+5. templates directory: contains the HTML templates.
+6. static directory: contains the css and javaScript files. 
+
+### Web Scraping
