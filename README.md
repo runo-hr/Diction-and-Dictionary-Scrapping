@@ -2,7 +2,10 @@
 
 ## Background Info
 I did this project as part of an application for a Junior Developer role at Pesapal.
-IN this README, I will take you through my approach to the problem, development of the solution and how you can contribute to taking this project past the scope of the problem statement.
+In this README, I will take you through my approach to the problem, development of the solution and how you can contribute to taking this project past the scope of the problem statement.  
+<blockquote>
+*** I have not yet completed writing the README.
+</blockquote>
 
 ## Problem Statement
 Write an application which, when given a web page will download the text on it and output a sorted list of the unique words on the page, with counts of the occurrences.
@@ -22,13 +25,40 @@ Currenntly, this project will not answer these questions. However, it serves as 
 
 ## High Level Overview
 ### What will the application be?  
-This will be a web application. The client can provide as many pages as they wish. The pages will be processed and the results displayed to the user.  
+This will be a web application. The client can provide as many pages as they wish. The pages will be processed and the results displayed for the client.  
 
 ### Where can you test the application?  
 I have hosted the application <a href='http://dictionscrape.pythonanywhere.com/'>here</a>.  
 #### Errors with testing.  
 Locally, the project works fine. When hosted, I run into the following error. 
-
+<blockquote>
 requests.exceptions.ProxyError: HTTPSConnectionPool(host='www.geeksforgeeks.org', port=443): Max retries exceeded with url: /python-find-words-with-both-alphabets-and-numbers/ (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden')))
-
+</blockquote>
 I searched for why I get this error and according to <a href='https://stackoverflow.com/questions/70788406/requests-exceptions-proxyerror-httpsconnectionpoolhost-zillow-com-port-443'>this</a>, it is because I am on the free plan. Apparently, when hosting your applications at <a href='https://www.pythonanywhere.com/'>pythonanywhere</a>, if your web app involves scraping, they have to add the pages you want to scrape on the white list. The application should work on a paid plan.   
+
+## Tech Stack
+1. Python:  Beautiful soup, Flask 
+2. HTML, CSS and JavaScript
+3. jinja
+4. GIT
+
+### Tech Stack Summary
+#### Beautiful Soup
+Why Beautiful Soup? Why not Scrapy, Selenium, Splash, Pandas or Requests-HTML?  
+1. Familiarity: As at the time of doing this project, I only had experience with Beautiful Soup and Pandas.  
+2. Nature of the project   
+Data to scrape - To find out all the words used in a page, one needs to scrape the html content of the page. Beautiful Soup is good for parsing HTML.   
+If the problem statement required scraping just table data, I would go with Pandas.  
+Else if the problem statement required that we automatically test the application while scraping it for both HTML and JavaScript data, Selenium would be a good choice.  
+If we needed to scrape huge amounts of data, wanted more control with the scraping, and still have the operation be fast, Scrapy would be the choice.  
+
+#### Flask  
+I used Flask to build the backend of the application.  
+
+#### HTML, CSS and JavaScript
+This application receives user input. This input is entered through HTML forms.  
+CSS provides the styling for the page.  
+For the client to provide a custom number of input pages, the input fields need to be dynamically generated. JavaScript is responsible for the functionality of Add/Remove page buttons. 
+
+#### jinja
+jinja passes data from Flask backend to HTML tags.  
