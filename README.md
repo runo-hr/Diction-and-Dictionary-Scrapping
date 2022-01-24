@@ -74,10 +74,9 @@ For pushing changes from local working directory to this GitHub repo.
 5. Packaging the Application
 6. Working with classes and class inheritance
 7. Data Structures and Algorithms
-8. Secret keys for applications
-9. Dynamic routing
-10. Creating front ends to web applications.
-11. Using one event listener for multiple buttons.
+8. Dynamic routing
+9. Creating front ends to web applications.
+10. Using one event listener for multiple buttons.
 
 ## Development
 ### Files of the app
@@ -88,11 +87,32 @@ For pushing changes from local working directory to this GitHub repo.
 5. templates directory: contains the HTML templates.
 6. static directory: contains the css and javaScript files. 
 
+### Receiving Client input
+Every page of the app extends base.html. The body of base.html is divided into two columns.  
+On the top right column is a form where the client enters page URLs.  
+The first field of the form has an id page_1. New fields have unique ids ie. page_2, page_3 and so on.
+When the submit button is clicked, a POST request is made to the backend.
+#### Factors to consider
+1. Invalid page URLs.  
+A valid URL folllows the following syntax.  
+scheme://netloc/path;params?query#fragment  
+    <ul>
+    <li>scheme: The protocol name, usually http/https </li>
+    <li>netloc: network location</li>
+    <li>path: Contains information on how the specified resource needs to be accessed</li>
+    <li>params: (optional) adds fine tuning to path. </li>
+    <li>query: Another element adding fine grained access to the path in consideration. (optional)</li>
+    <li>fragment: Contains bits of information of the resource being accessed within the path. (optional)</li>
+    </ul>  
+    
+    The application needs to chack if a provided url is valid and if its not, alert the user and ask to provide a valid url
+    
+2. Security of user data.  
+Is the user entering sensitive data like passwords? Do we need to set up secret keys to encrypt this data? For this application, we are only receiving urls and as such we dont need to configure the application with a secret key.  
+
 ### Web Scraping
-<<<<<<< HEAD
 To scrape data from from HTML documents, we need to know where the data exists within the page. Words can be contained in paragraph tags, span, tables, block quotes, headings, anchor and a couple more HTML tags.  
 These tags can then be within div tags which can in turn be siblings of other div tags. To access specific text on a page, we need to know the class of the div tags parent to it. These classes are different on different sites.  
 The common property of HTML pages on different sites is the head and body tags. The head holds metadata on the page. The body holds the content displayed on the page.  
 For the application to work on different HTML pages, we need to specify to the application that we are looking for text within the body tags.
-=======
->>>>>>> 5cf1afc7b421f93bafb068f41b6a78a31a0e986a
+
