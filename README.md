@@ -65,7 +65,7 @@ For the client to provide a custom number of input pages, the input fields need 
 jinja passes data from Flask backend to HTML tags.  
 
 #### GIT
-For pushing changes from local working directory to this GitHub repo.
+For pushing changes from local working directory to this repo.
 
 ## Concepts that will be covered
 1. Web Scraping
