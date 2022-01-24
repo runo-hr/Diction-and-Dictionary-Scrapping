@@ -78,7 +78,7 @@ For pushing changes from local working directory to this repo.
 8. Using one event listener for multiple buttons.
 9. Data visualization on the web.
 
-## The Flow of the Application
+## The Flow of Program Excecution
 ### Files of the app
 1.  run.py: has the driver code for the application.
 2. application directory: the package of the application. Initialized by__init__
@@ -128,7 +128,7 @@ Once the objects are created, they will hold information on various categories t
 This app has a few files and doesnt face cyclic imports. However, as the needs of an application grow, so do the files needed to run the application. In such situations, its possible to have two files importing from each other. These are cyclic imports and result to some missing components.
 
     To avoid cyclic imports, Python uses packages; folders with__init__ file.  
-    This package for this app is the directory application.  
+    The package for this app is the directory application.  
 
     The driver code is located outside the package. It imports the Flask object app from the package. 
 
