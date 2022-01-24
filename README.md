@@ -47,7 +47,7 @@ I searched for why I get this error and according to <a href='https://stackoverf
 Why Beautiful Soup? Why not Scrapy, Selenium, Splash, Pandas or Requests-HTML?  
 1. Familiarity: As at the time of doing this project, I only had experience with Beautiful Soup and Pandas.  
 2. Nature of the project   
-Data to scrape - To find out all the words used in a page, one needs to scrape the html content of the page. Beautiful Soup is good for parsing HTML.   
+Data to scrape - To find out all the words used in a page, one needs to scrape the html content of the page. Beautiful Soup is good for parsing HTML and XML.   
 If the problem statement required scraping just table data, I would go with Pandas.  
 Else if the problem statement required that we automatically test the application while scraping it for both HTML and JavaScript data, Selenium would be a good choice.  
 If we needed to scrape huge amounts of data, wanted more control with the scraping, and still have the operation be fast, Scrapy would be the choice.  
@@ -88,3 +88,7 @@ For pushing changes from local working directory to this GitHub repo.
 6. static directory: contains the css and javaScript files. 
 
 ### Web Scraping
+To scrape data from from HTML documents, we need to know where the data exists within the page. Words can be contained in paragraph tags, span, tables, block quotes, headings, anchor and a couple more HTML tags.  
+These tags can then be within div tags which can in turn be siblings of other div tags. To access specific text on a page, we need to know the class of the div tags parent to it. These classes are different on different sites.  
+The common property of HTML pages on different sites is the head and body tags. The head holds metadata on the page. The body holds the content displayed on the page.  
+For the application to work on different HTML pages, we need to specify to the application that we are looking for text within the body tags.
