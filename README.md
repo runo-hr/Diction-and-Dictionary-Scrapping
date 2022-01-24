@@ -69,17 +69,16 @@ For pushing changes from local working directory to this repo.
 
 ## Concepts that will be covered
 1. Web Scraping
-2. Creating Flask backends
-3. GET and POST requests
-4. Exception Handling
-5. Circular imports and Python packages
-6. Working with classes and class inheritance
-7. Data Structures and Algorithms
-8. Dynamic routing
-9. Using one event listener for multiple buttons.
-10. Data visualization on the web.
+2. GET and POST requests
+3. Exception Handling
+4. Circular imports and Python packages
+5. Working with classes and class inheritance
+6. Data Structures and Algorithms
+7. Dynamic routing
+8. Using one event listener for multiple buttons.
+9. Data visualization on the web.
 
-## Development
+## The Flow of the Application
 ### Files of the app
 1.  run.py: has the driver code for the application.
 2. application directory: the package of the application. Initialized by__init__
@@ -107,9 +106,41 @@ scheme://netloc/path;params?query#fragment
     </ul>  
     
     The application needs to chack if a provided url is valid and if its not, alert the user and ask to provide a valid url
-    
-2. Security of user data.  
-Is the user entering sensitive data like passwords? Do we need to set up secret keys to encrypt this data? For this application, we are only receiving urls and as such we dont need to configure the application with a secret key.  
+
+### Request handling
+Whenever a POST request is made, the home_page function in routes.py retreives the data from the HTML forms. 
+The function does the following.  
+<ul>
+    <li>Creates an instance of the URL class from scrape.py</li>
+    <li>Checks if the url is valid using the URL object</li>
+    <li>If valid, appends the url to a pages list</li>
+    <li>If not valid, flashes an alert to base.html and renders the home page </li>
+    <li>Passes on the pages list to othr functions for further processing</li>
+</ul>  
+
+### Processing the page(s)
+Processing the pages requires creating instances of Scraper and Compare from scrape.py  
+Just pass the url to the either class when creating the class objects.  
+Once the objects are created, they will hold information on various categories that will then be rendered on HTML templates.  
+
+#### Factors to consider - request handling through processing
+1. Cyclic imports  
+This app has a few files and doesnt face cyclic imports. However, as the needs of an application grow, so do the files needed to run the application. In such situations, its possible to have two files importing from each other. These are cyclic imports and result to some missing components.
+
+    To avoid cyclic imports, Python uses packages; folders with__init__ file.  
+    This package for this app is the directory application.  
+
+    The driver code is located outside the package. It imports the Flask object app from the package. 
+
+    When the driver code is run, every line of__init__ is executed.  
+    The last line imports routes.py   
+        <code><em> from application import routes </em> </code>  
+    As observed earlier, routes requires the URL, Scraper and Compare classes of the scrape module. Instead of importing directly from scrape, routes uses the following line  
+        <code><em>from application.scrape import Scraper</em></code>  
+    As such if we had cyclic imports, packaging the application would solve this since we always import from the package  
+    <code><em>from package.file import sth</em></code>  
+
+## The scrape module
 
 ### Web Scraping
 To scrape data from from HTML documents, we need to know where the data exists within the page. Words can be contained in paragraph tags, span, tables, block quotes, headings, anchor and a couple more HTML tags.  
