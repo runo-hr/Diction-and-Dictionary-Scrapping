@@ -72,7 +72,7 @@ For pushing changes from local working directory to this repo.
 2. GET and POST requests
 3. Exception Handling
 4. Circular imports and Python packages
-5. Working with classes and class inheritance
+5. Object Oriented Programming
 6. Data Structures and Algorithms
 7. Dynamic routing
 8. Using one event listener for multiple buttons.
