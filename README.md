@@ -78,7 +78,7 @@ For pushing changes from local working directory to this repo.
 8. Using one event listener for multiple buttons.
 9. Data visualization on the web.
 
-## The Flow of Program Excecution
+## The Flow of  Data in the application
 ### Files of the app
 1.  run.py: has the driver code for the application.
 2. application directory: the package of the application. Initialized by__init__
@@ -120,7 +120,7 @@ The function does the following.
 
 ### Processing the page(s)
 Processing the pages requires creating instances of Scraper and Compare from scrape.py  
-Just pass the url to the either class when creating the class objects.  
+Just pass the url to either class when creating the class objects.  
 Once the objects are created, they will hold information on various categories that will then be rendered on HTML templates.  
 
 #### Factors to consider - request handling through processing
@@ -137,9 +137,12 @@ This app has a few files and doesnt face cyclic imports. However, as the needs o
         <code><em> from application import routes </em> </code>  
     As observed earlier, routes requires the URL, Scraper and Compare classes of the scrape module. Instead of importing directly from scrape, routes uses the following line  
         <code><em>from application.scrape import Scraper</em></code>  
-    As such if we had cyclic imports, packaging the application would solve this since we always import from the package  
-    <code><em>from package.file import sth</em></code>  
+    As such if we had cyclic imports, packaging the application would solve this since class instances like app(Flask instance), db(incase we have a database instance) will always be initialized in the__init__</em></code> file and imports will be from the package     
+    <code><em>from package.file import class</em></code>  
+    <code><em>from package import object</em></code>   
 
+### Receiving processed data
+Data from routes.py is passed to HTML and javascript using jinja syntax.  
 ## The scrape module
 
 ### Web Scraping
