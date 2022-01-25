@@ -137,7 +137,7 @@ This app has a few files and doesnt face cyclic imports. However, as the needs o
         <code><em> from application import routes </em> </code>  
     As observed earlier, routes requires the URL, Scraper and Compare classes of the scrape module. Instead of importing directly from scrape, routes uses the following line  
         <code><em>from application.scrape import Scraper</em></code>  
-    As such if we had cyclic imports, packaging the application would solve this since class instances like app(Flask instance), db(incase we have a database instance) will always be initialized in the__init__</em></code> file and imports will be from the package     
+    As such if we had cyclic imports, packaging the application would solve this since class instances like app(Flask instance), db(incase we have a database instance) will always be initialized in the__init__ file and imports will be from the package. Adiitionally, the config file will be imported in the__init__     
     <code><em>from package.file import class</em></code>  
     <code><em>from package import object</em></code>   
 
