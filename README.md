@@ -178,4 +178,13 @@ The list of words is  cleaned by removing symbols from all words and removing wo
 #### 3. Creating a counts dictionary  
 
 ### CLass Compare
+This class inherits(single inheritance) from the Scraper class.  
+The methods of the class use set operations to define the following attributes.
 
+<ul>
+    <li><code>self.in_all </code>: words present in all the pages</li>
+    <li><code>self.only_in_first  </code>: </li>
+    <li><code>self.combinations_of_two </code>: comparison of each page with every other.     
+    This is a list of dictionary each of which  has the following keys: Heading ie. page 1 vs page 2, common in both, only in page 1 and  only in page 2.  
+</li>   
+</ul>  
