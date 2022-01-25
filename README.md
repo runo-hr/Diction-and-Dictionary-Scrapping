@@ -78,7 +78,7 @@ For pushing changes from local working directory to this repo.
 8. Using one event listener for multiple buttons.
 9. Data visualization on the web.
 
-## The Flow of  Data in the application
+## The Flow of  Data in the Application
 ### Files of the app
 1.  run.py: has the driver code for the application.
 2. application directory: the package of the application. Initialized by__init__
