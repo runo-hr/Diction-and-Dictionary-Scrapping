@@ -108,7 +108,7 @@ scheme://netloc/path;params?query#fragment
     The application needs to check if a provided url is valid and if its not, alert the user and ask to provide a valid url.
 
 ### Request handling
-Whenever a POST request is made, the home_page function in routes.py retreives the data from the HTML forms. 
+Whenever a POST request is made, the home_page function in routes.py retrieves the data from the HTML forms. 
 The function does the following.  
 <ul>
     <li>Creates an instance of the URL class from scrape.py</li>
