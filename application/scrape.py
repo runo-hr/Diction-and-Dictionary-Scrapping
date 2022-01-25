@@ -65,7 +65,6 @@ class Scraper:
             self.count_dict[word] = self.count_dict.get(word, 0) + 1
         self.sorted_count = sorted(self.count_dict.items(), key=lambda kv: kv[1])
         self.unique_words = set(self.count_dict.keys())
-        return self.most_frequent()
 
     def most_frequent(self, n=10):
         c = Counter(self.count_dict)
