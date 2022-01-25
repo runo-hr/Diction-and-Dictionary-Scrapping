@@ -3,9 +3,6 @@
 ## Background Info
 I did this project as part of an application for a Junior Developer role at Pesapal.
 In this README, I will take you through my approach to the problem, development of the solution and how you can contribute to taking this project past the scope of the problem statement.  
-<blockquote>
-*** I have not yet completed writing the README.
-</blockquote>
 
 ## Problem Statement
 Write an application which, when given a web page will download the text on it and output a sorted list of the unique words on the page, with counts of the occurrences.
@@ -188,3 +185,6 @@ The methods of the class use set operations to define the following attributes.
     This is a list of dictionary each of which  has the following keys: Heading ie. page 1 vs page 2, common in both, only in page 1 and  only in page 2.  
 </li>   
 </ul>  
+
+## Data Visualization
+The 10 most frequent words are displayed on the results page of each url using Chart.js, an open source JavaScript library for data visualization.
