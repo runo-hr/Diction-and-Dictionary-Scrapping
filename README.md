@@ -21,7 +21,7 @@ Say you want to find out the similarities of topics covered by all the major new
 2. Scraping job sites.  
 Which jobs are highly promoted across LinkedIn, Glassdoor, JustRemote, GitHUb Jobs, AngelList, Flex Jobs and other sites?
 
-Currenntly, this project will not answer these questions. However, it serves as a baseline or blueprint to solving these and similar web scraping questions. How to create this baseline, is what I will be answering in this page.  
+Currenntly, this project will not answer these questions. However, it serves as a baseline to solving these and similar web scraping questions. How to create this baseline, is what I will discuss in this page.  
 
 ## High Level Overview
 ### What will the application be?  
