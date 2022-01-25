@@ -144,9 +144,38 @@ This app has a few files and doesnt face cyclic imports. However, as the needs o
 ### Receiving processed data
 Data from routes.py is passed to HTML and javascript using jinja syntax.  
 ## The scrape module
+### Class URL  
+This class has only one method; url_validator that uses class urlparse from the parse module of the Python package urllib to check for url validity.  
+The function checks for the presence of scheme, netloc and path in the url.  
+### CLass Scrape
+Whenever this class is called, the following class attributes can be accessed.  
 
-### Web Scraping
+<ul>
+    <li><code>self.url </code>: url of the page</li>
+    <li><code>self.title  </code>: title of the page</li>
+    <li><code>self.count_dict </code>: dictionary of all words and their frequency</li>
+    <li><code>self.sorted_count</code> : sorted  list of all words and their frequency of occurrence - sorted by the frequency </li>
+    <li><code>self.alphanum_words </code>: all words with numbers in them </li>
+    <li><code>self.unique_words  </code>: set of all words </li>
+    <li><code>self.most_freq   </code>: dictionary of 10 most frequent words with frequency being the frequency</li>
+    </ul>  
+These attributes are passed to HTML templates in routes.py  
+For these attributes to be created, the following happens,
+
+#### 1. Get all text from HTML   
 To scrape data from from HTML documents, we need to know where the data exists within the page. Words can be contained in paragraph tags, span, tables, block quotes, headings, anchor and a couple more HTML tags.  
+
 These tags can then be within div tags which can in turn be siblings of other div tags. To access specific text on a page, we need to know the class of the div tags parent to it. These classes are different on different sites.  
+
 The common property of HTML pages on different sites is the head and body tags. The head holds metadata on the page. The body holds the content displayed on the page.  
-For the application to work on different HTML pages, we need to specify to the application that we are looking for text within the body tags.
+
+For the application to work on different HTML pages, we need to specify to the application that we are looking for text within the body tags.  
+After  getting the text content of the page, we create a list of all words
+
+#### 2. Clean the words  
+The list of words is  cleaned by removing symbols from all words and removing words that have numbers in them.  
+
+#### 3. Creating a counts dictionary  
+
+### CLass Compare
+
