@@ -105,7 +105,7 @@ scheme://netloc/path;params?query#fragment
     <li>fragment: Contains bits of information of the resource being accessed within the path. (optional)</li>
     </ul>  
     
-    The application needs to chack if a provided url is valid and if its not, alert the user and ask to provide a valid url
+    The application needs to check if a provided url is valid and if its not, alert the user and ask to provide a valid url.
 
 ### Request handling
 Whenever a POST request is made, the home_page function in routes.py retreives the data from the HTML forms. 
