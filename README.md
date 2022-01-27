@@ -96,6 +96,9 @@ scheme://netloc/path;params?query#fragment
     </ul>  
     
     The application needs to check if a provided url is valid and if its not, alert the user and ask to provide a valid url.
+    
+2. No scheme provided
+What happens when a user provides <em>google.com</em> or <em>www.google.com</em>? These have no scheme. How does the app handle such situations?
 
 ### Request handling
 Whenever a POST request is made, the home_page function in routes.py retrieves the data from the HTML forms. 
