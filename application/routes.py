@@ -24,7 +24,7 @@ def home_page():
                     flash(f'Please provide a valid URL', category='danger')
                     break
             except KeyError:
-                if len(pages) == 1:
+                if len(all_pages) == 1:
                     return results_page(all_pages[0])
                 else:
                     return compare_pages(all_pages)
