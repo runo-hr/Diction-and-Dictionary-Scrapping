@@ -25,14 +25,7 @@ Currenntly, this project will not answer these questions. However, it serves as 
 This will be a web application. The client can provide as many pages as they wish. The pages will be processed and the results displayed for the client.  
 
 ### Where can you test the application?  
-I have hosted the application <a href='http://dictionscrape.pythonanywhere.com/'>here</a>.  
-#### Errors with testing.  
-Locally, the project works fine. When hosted, I run into the following error. 
-<blockquote>
-requests.exceptions.ProxyError: HTTPSConnectionPool(host='www.geeksforgeeks.org', port=443): Max retries exceeded with url: /python-find-words-with-both-alphabets-and-numbers/ (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden')))
-</blockquote>
-I searched for why I get this error and according to <a href='https://stackoverflow.com/questions/70788406/requests-exceptions-proxyerror-httpsconnectionpoolhost-zillow-com-port-443'>this</a>, it is because I am on the free plan. Apparently, when hosting your applications at <a href='https://www.pythonanywhere.com/'>pythonanywhere</a>, if your web app involves scraping, they have to add the pages you want to scrape on the white list.  
-That said, I am currently exploring zeet and Heroku to see if the web app works fully on their free plans.
+Click <a href='https://diction-scrape.herokuapp.com/'>here</a> to test the app.  
 
 ## Tech Stack
 1. Python:  Beautiful soup, Flask 
