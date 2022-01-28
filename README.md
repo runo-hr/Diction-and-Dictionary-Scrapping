@@ -1,8 +1,10 @@
 # Diction and Dictionary Scrapping.
 <blockquote>
     <h3>Pending Bug fixes </h3>
-    1. Automatically add scheme to url where non is provided.    
-    2. Notify user when a page no longer exists on the web
+    <ol>
+        <li> Automatically add scheme to url where non is provided. </li>  
+        <li> Notify user when a page no longer exists on the web</li>
+    </ol>
 </blockquote>
 
 ## Background Info
