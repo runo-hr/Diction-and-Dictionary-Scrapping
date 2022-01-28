@@ -2,6 +2,7 @@
 <blockquote>
     <h3>Pending Bug fixes </h3>
     1. Automatically add scheme to url where non is provided
+    2. Notify user when a page no longer exists on the web
     </blockquote>
 
 ## Background Info
