@@ -7,6 +7,7 @@ all_pages = []
 
 @app.route('/', methods=["POST", "GET"])
 def home_page():
+    """ Returns a list of urls retrieved from html form """
     if len(all_pages) > 0:
         all_pages.clear()
     u = URL()
@@ -31,6 +32,7 @@ def home_page():
     return render_template('index.html')
 
 def one_page(page):
+    """Returns a dictionary of attributes from the Scraper class """
     page_data = {}
     chart_data = {}
 
@@ -55,11 +57,13 @@ def one_page(page):
 
 @app.route('/results', methods=["POST", "GET"])
 def results_page(page):
+    """ Passes scraping results of one page to results.html"""
     page_data = one_page(page)
     return render_template('results.html', page_data=page_data)
 
 @app.route('/compare', methods=["POST", "GET"])
 def compare_pages(pages):
+    """ Passes comparison results of different pages to the frontend """
     c = Compare(pages)
     comparison_data = {}
 
@@ -81,6 +85,9 @@ def compare_pages(pages):
 
 @app.route('/results/<int:n>', methods=["POST", "GET"])
 def dynamic_page(n):
+    """ Handles routing to different pages from comparison results
+        Receives post requests from the different pages of comparison results
+    """
     if request.method == 'POST':
         return home_page()
     page = all_pages[n]
