@@ -74,7 +74,7 @@ For pushing changes from local working directory to this repo.
 
 ## The Flow of  Data in the Application
 ### Files of the app
-1.  run.py: has the driver code for the application.
+1. wsgi.py: has the driver code for the application.
 2. application directory: the package of the application. Initialized by__init__
 3. scrape.py: module with classes to scrape and compare pages.
 4. routes.py: serves HTML templates, handles POST and GET requests.
