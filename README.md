@@ -4,6 +4,7 @@
     <ol>
         <li> Automatically add scheme to url where non is provided. </li>  
         <li> Notify user when a page no longer exists on the web</li>
+        <li> Make the two column layout responsive on mobile</li>
     </ol>
 </blockquote>
 
