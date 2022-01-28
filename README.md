@@ -1,4 +1,11 @@
 # Diction and Dictionary Scrapping.
+<blockquote>
+    <h3>Pending Bug fixes </h3>
+    <ol>
+        <li> Automatically add scheme to url where non is provided. </li>  
+        <li> Notify user when a page no longer exists on the web</li>
+    </ol>
+</blockquote>
 
 ## Background Info
 I did this project as part of an application for a Junior Developer role at Pesapal.
@@ -70,7 +77,7 @@ For pushing changes from local working directory to this repo.
 
 ## The Flow of  Data in the Application
 ### Files of the app
-1.  run.py: has the driver code for the application.
+1. wsgi.py: has the driver code for the application.
 2. application directory: the package of the application. Initialized by__init__
 3. scrape.py: module with classes to scrape and compare pages.
 4. routes.py: serves HTML templates, handles POST and GET requests.
@@ -96,6 +103,9 @@ scheme://netloc/path;params?query#fragment
     </ul>  
     
     The application needs to check if a provided url is valid and if its not, alert the user and ask to provide a valid url.
+    
+2. No scheme provided
+What happens when a user provides <em>google.com</em> or <em>www.google.com</em>? These have no scheme. How does the app handle such situations?
 
 ### Request handling
 Whenever a POST request is made, the home_page function in routes.py retrieves the data from the HTML forms. 
