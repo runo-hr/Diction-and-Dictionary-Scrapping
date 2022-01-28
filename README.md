@@ -1,4 +1,8 @@
 # Diction and Dictionary Scrapping.
+<blockquote>
+    <h3>Pending Bug fixes </h3>
+    1. Automatically add scheme to url where non is provided
+    </blockquote>
 
 ## Background Info
 I did this project as part of an application for a Junior Developer role at Pesapal.
